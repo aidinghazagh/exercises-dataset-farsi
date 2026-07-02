@@ -11,7 +11,7 @@
   <img src="images/0334-DsgkuIt.jpg" width="140" style="border-radius:8px; margin:4px;" />
 </p>
 
-**A comprehensive, ready-to-use fitness exercise dataset with 1,324 exercises — each with animation GIFs, thumbnail images, muscle group info, equipment data, and full multilingual instructions (English, Spanish, Turkish).**
+**A comprehensive, ready-to-use fitness exercise dataset with 1,324 exercises — each with animation GIFs, thumbnail images, muscle group info, equipment data, and full bilingual instructions (English, Farsi/Persian).**
 
 [![Exercises](https://img.shields.io/badge/Exercises-1324-blue?style=flat-square)](data/exercises.json)
 [![Videos](https://img.shields.io/badge/Animation%20GIFs-1324-green?style=flat-square)](videos/)
@@ -34,7 +34,7 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Interactive Browser & Developer Setup](#-interactive-browser--developer-setup)
+- [Interactive Browser](#-interactive-browser)
 - [File Structure](#-file-structure)
 - [Statistics](#-statistics)
 - [Data Schema](#-data-schema)
@@ -64,16 +64,16 @@ Each exercise entry contains:
 | Muscle Group | Supporting / synergist muscles |
 | Equipment | Equipment required (or `body weight` for bodyweight) |
 | Instructions (EN) | Step-by-step instructions in English |
-| Instructions (ES) | Step-by-step instructions in Spanish |
-| Instructions (TR) | Step-by-step instructions in Turkish |
+| Instructions (FA) | Step-by-step instructions in Farsi (Persian) |
+| Name (FA) | Farsi translation of the exercise name |
 | Thumbnail | Static `.jpg` preview image |
 | Animation GIF | `.gif` animation showing the movement |
 
 ---
 
-## 🖥️ Interactive Browser & Developer Setup
+## 🖥️ Interactive Browser
 
-This repository includes two ready-to-use HTML tools — no server required, just open in a browser.
+This repository includes a ready-to-use HTML exercise browser — no server required, just open in a browser.
 
 ### `index.html` — Exercise Browser
 
@@ -81,15 +81,7 @@ A fully client-side exercise explorer with:
 - Live search across all 1,324 exercises
 - Filter by category, equipment, and target muscle
 - Infinite scroll grid with thumbnail previews
-- Click any card to see full details, GIF animation, and instructions in English, Spanish, or Turkish
-
-### `setup.html` — Developer Setup Guide
-
-A step-by-step guide for integrating the dataset into your own application:
-
-1. **Database Setup** — `CREATE TABLE` SQL for SQL Server, PostgreSQL, MySQL, and SQLite. Generate a ready-to-run `.sql` file with all 1,324 INSERT statements, built entirely in your browser.
-2. **API Integration** — Copy-paste client code in **JavaScript, Python, C#, Java, PHP, Go, and cURL** showing how to call your backend API. Enter your base URL and all examples update live.
-3. **Ask Your LLM** — A structured prompt (choose your framework + database) that you can paste into ChatGPT, Claude, or Gemini to generate a complete, production-ready REST API in one shot. Supports Express.js, FastAPI, ASP.NET Core, Spring Boot, Laravel, and Gin.
+- Click any card to see full details, GIF animation, and bilingual instructions in English and Farsi (Persian)
 
 ---
 
@@ -102,7 +94,6 @@ exercises-dataset/
 ├── images/                  # Exercise thumbnail images (.jpg) — 1,324 files
 ├── videos/                  # Exercise animation GIFs (.gif) — 1,324 files
 ├── index.html               # Interactive exercise browser (client-side, no server needed)
-├── setup.html               # Developer setup guide (DB import + API integration)
 └── README.md
 ```
 
@@ -112,7 +103,6 @@ exercises-dataset/
 - **`images/`** — 1,324 thumbnail JPGs named with the exercise ID (e.g. `0001-2gPfomN.jpg`).
 - **`videos/`** — 1,324 GIF animations demonstrating each movement (e.g. `0001-2gPfomN.gif`).
 - **`index.html`** — Standalone exercise browser. Open directly in any modern browser.
-- **`setup.html`** — Developer guide for DB setup, API integration, and LLM-assisted backend generation.
 
 ---
 
@@ -172,8 +162,8 @@ Each record in `data/exercises.json` follows this structure:
 | `body_part` | `string` | Same as `category` — body part targeted |
 | `equipment` | `string` | Required equipment (e.g. `"dumbbell"`, `"body weight"`) |
 | `instructions.en` | `string` | Full step-by-step instructions in English |
-| `instructions.es` | `string` | Full step-by-step instructions in Spanish |
-| `instructions.tr` | `string` | Full step-by-step instructions in Turkish |
+| `instructions.fa` | `string` | Full step-by-step instructions in Farsi (Persian) |
+| `name_fa` | `string` | Farsi translation of the exercise name |
 | `muscle_group` | `string` | Primary synergist muscle group |
 | `secondary_muscles` | `array[string]` | Additional muscles involved |
 | `target` | `string` | Primary target muscle (e.g. `"biceps"`, `"pectoralis major"`) |
@@ -187,13 +177,29 @@ Each record in `data/exercises.json` follows this structure:
 {
   "id": "0001",
   "name": "3/4 sit-up",
+  "name_fa": "دراز‌نشست سه‌چهارم",
   "category": "waist",
   "body_part": "waist",
   "equipment": "body weight",
   "instructions": {
     "en": "Lie flat on your back with your knees bent and feet flat on the ground. Place your hands behind your head with your elbows pointing outwards. Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle. Pause for a moment at the top, then slowly lower your upper body back down to the starting position. Repeat for the desired number of repetitions.",
-    "es": "Túmbate sobre tu espalda con las rodillas flexionadas y los pies apoyados en el suelo. Coloca las manos detrás de la cabeza con los codos apuntando hacia afuera. Activando el abdomen, levanta lentamente la parte superior del cuerpo del suelo, curvándote hacia adelante hasta que tu torso forme un ángulo de 45 grados. Haz una pausa por un momento en la parte superior, luego baja lentamente la parte superior del cuerpo de vuelta a la posición inicial. Repite el número de repeticiones deseado.",
-    "tr": "Sırt üstü yatın, dizlerinizi bükün ve ayaklarınızı yere düz koyun. Ellerinizi başınızın arkasına, dirsekleriniz dışa bakacak şekilde yerleştirin. Karın kaslarınızı kasarak üst vücudunuzu yerden kaldırın ve gövdeniz 45 derecelik açıya gelene kadar öne doğru kıvırın. Bir an için bu pozisyonda bekleyin, ardından yavaşça başlangıç konumuna geri dönün. İstenen tekrar sayısı için hareketi tekrarlayın."
+    "fa": "به پشت دراز بکشید، زانوهایتان خم و کف پاهایتان روی زمین باشد. دست‌هایتان را پشت سرتان بگذارید آرنج‌ها به سمت بیرون باشند. با درگیر کردن عضلات شکم، بالاتنه را آرام از زمین بلند کنید و به جلو خم شوید تا زاویه ۴۵ درجه بسازید. لحظه‌ای در بالا مکث کنید، سپس آرام بالاتنه را به موقعیت اولیه برگردانید. تعداد تکرارهای مورد نظر را انجام دهید."
+  },
+  "instruction_steps": {
+    "en": [
+      "Lie flat on your back with your knees bent and feet flat on the ground.",
+      "Place your hands behind your head with your elbows pointing outwards.",
+      "Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle.",
+      "Pause for a moment at the top, then slowly lower your upper body back down to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "fa": [
+      "به پشت دراز بکشید، زانوهایتان خم و کف پاهایتان روی زمین باشد.",
+      "دست‌هایتان را پشت سرتان بگذارید آرنج‌ها به سمت بیرون باشند.",
+      "با درگیر کردن عضلات شکم، بالاتنه را آرام از زمین بلند کنید و به جلو خم شوید تا زاویه ۴۵ درجه بسازید.",
+      "لحظه‌ای در بالا مکث کنید، سپس آرام بالاتنه را به موقعیت اولیه برگردانید.",
+      "تعداد تکرارهای مورد نظر را انجام دهید."
+    ]
   },
   "muscle_group": "hip flexors",
   "secondary_muscles": ["hip flexors", "lower back"],
@@ -314,11 +320,11 @@ print(f"Bodyweight exercises: {len(bodyweight)}")
 categories = sorted({ex["category"] for ex in exercises})
 print("Categories:", categories)
 
-# Access multilingual instructions
+# Access bilingual instructions
 ex = exercises[0]
 print(ex["instructions"]["en"])  # English
-print(ex["instructions"]["es"])  # Spanish
-print(ex["instructions"]["tr"])  # Turkish
+print(ex["instructions"]["fa"])  # Farsi (Persian)
+print(ex["name_fa"])             # Farsi exercise name
 ```
 
 ### Python — Load with Pandas
@@ -359,11 +365,11 @@ const byCategory = exercises.reduce((acc, ex) => {
   return acc;
 }, {});
 
-// Access multilingual instructions
+// Access bilingual instructions
 const ex = exercises[0];
 console.log(ex.instructions.en); // English
-console.log(ex.instructions.es); // Spanish
-console.log(ex.instructions.tr); // Turkish
+console.log(ex.instructions.fa); // Farsi (Persian)
+console.log(ex.name_fa);         // Farsi exercise name
 ```
 
 ### TypeScript — Type-safe Usage
@@ -372,13 +378,13 @@ console.log(ex.instructions.tr); // Turkish
 interface Exercise {
   id: string;
   name: string;
+  name_fa: string;
   category: string;
   body_part: string;
   equipment: string;
   instructions: {
     en: string;
-    es: string;
-    tr: string;
+    fa: string;
   };
   muscle_group: string;
   secondary_muscles: string[];
