@@ -24,6 +24,9 @@
 
 ## ⚠️ Disclaimer
 
+> This repository is a **fork** of [hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset).
+> This version includes thumbnail images, animation GIFs, and Farsi (Persian) translations of exercise instructions.
+>
 > This repository is provided for **educational and non-commercial research purposes only**.
 > All exercise media (images, videos) belong to their respective copyright holders.
 > **Commercial use is strictly prohibited.**
